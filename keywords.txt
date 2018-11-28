@@ -1,0 +1,7 @@
+Robot	KEYWORD1
+moveForard	KEYWORD2
+moveBackward	KEYWORD2
+turnRight	KEYWORD2
+turnLeft	KEYWORD2
+brake	KEYWORD2
+accelerate	KEYWORD2	
