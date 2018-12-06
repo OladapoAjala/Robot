@@ -11,14 +11,15 @@
 #define DRIVE 1
 #define REVERSE 2
 #define PARK 3
-#define GEAR_ERR 4
+#define AUTO_DRIVE 4
+#define GEAR_ERR 5
 //Maximum possible voltage level that can be written by InventOne
 #define MAX_SPEED 1000
 //Anything less than 200 won't move the motors
-#define MIN_SPEED 100
+#define MIN_SPEED 50
 
 uint16_t speed = MIN_SPEED;
-uint8_t gearState = 4;
+uint8_t gearState = GEAR_ERR;
 
 Robot::Robot(uint8_t IN1, uint8_t IN2, uint8_t IN3, uint8_t IN4)
 {
@@ -135,7 +136,7 @@ uint16_t Robot::accelerate()
 */
 uint8_t Robot::gear(uint8_t val)
 {
-	if(val == DRIVE || val == REVERSE || val == PARK){
+	if(val == DRIVE || val == REVERSE || val == PARK || val == AUTO_DRIVE){
 		//If you try to park when speed is not minimum speed return an error: Might want to edit this to automatically call brake.
 		if(speed != MIN_SPEED && val == PARK){
 			while(speed != MIN_SPEED){
